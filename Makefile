@@ -1,7 +1,9 @@
 TEXFILE=Basiswissen_E-Mail
 CDOBJ=cd obj
 
-all: build ready
+.PHONY: all
+
+all: prepare build ready
 
 build:
 	${CDOBJ} && \
@@ -12,9 +14,9 @@ build:
 		pdflatex ../src/${TEXFILE}.tex
 
 ready:
-	mv obj/${TEXFILE}.pdf ./
+	mv obj/${TEXFILE}.pdf ./$$(date +"%Y%m%dT%H%M%S")"-"${TEXFILE}".pdf"
 
 prepare:
-	mkdir -p ../obj;
-	mkdir -p ../src;
-	mkdir -p ../images;
+	mkdir -p ./obj;
+	mkdir -p ./src;
+	mkdir -p ./images;
